@@ -23,3 +23,11 @@ class PasswordRecoveryPage(BasePage):
     @allure.step('Проверяем активность поля "Пароль"')
     def check_password_field_status(self):
         return self.find_element(PasswordRecoveryPageLocators.PASSWORD_INPUT_ACTIVE)
+
+    @allure.step('Собираем текст с кнопки "Восстановить"')
+    def get_text_from_recovery_button(self):
+        return self.get_text(PasswordRecoveryPageLocators.RECOVERY_BUTTON)
+
+    @allure.step('Собираем текст с заголовка "Востановление Пароля"')
+    def get_text_password_recovery(self):
+        return self.get_text(PasswordRecoveryPageLocators.PASSWORD_RECOVERY_TEXT)

@@ -1,7 +1,6 @@
 import allure
 from data import Url
 from pages.password_recovery_page import PasswordRecoveryPage
-from locators.password_recovery_page_locators import PasswordRecoveryPageLocators
 
 
 @allure.story('Тесты восстановления пароля')
@@ -12,7 +11,7 @@ class TestsPasswordRecovery:
         page.open(Url.LOGIN_PAGE)
         page.click_password_recovery_button()
         assert (page.get_url() == Url.FORGOT_PASSWORD_PAGE and
-                page.get_text(PasswordRecoveryPageLocators.RECOVERY_BUTTON)) == 'Восстановить'
+                page.get_text_from_recovery_button()) == 'Восстановить'
 
     @allure.title('Тест клика по кнопке "Восстановить" с введеной существующей почтой')
     def test_enter_email_click_recovery(self, driver, user):
@@ -22,7 +21,7 @@ class TestsPasswordRecovery:
         page.click_recovery_button()
         page.wait_url_change(Url.RESET_PASSWORD_PAGE)
         assert (page.get_url() == Url.RESET_PASSWORD_PAGE and
-                page.get_text(PasswordRecoveryPageLocators.PASSWORD_RECOVERY_TEXT) == 'Восстановление пароля')
+                page.get_text_password_recovery() == 'Восстановление пароля')
 
     @allure.title('Тест кнопки показать/скрыть пароль')
     def test_show_hide_password_button(self, driver, user):

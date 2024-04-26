@@ -3,6 +3,7 @@ import allure
 import string
 import requests
 
+import data
 from data import Url
 
 
@@ -54,10 +55,10 @@ def delete_user(access_token):
 
 
 @allure.step('Создаем заказ')
-def create_order(ingredient=None, access_token=None):
+def create_order(user):
     payload = {
-        'ingredients': [ingredient]
+        'ingredients': [data.TestData.INGREDIENTS]
     }
-    headers = {'Authorization': access_token}
+    headers = {'Authorization': user['json']['accessToken']}
     response = requests.post(Url.ORDERS_HANDLE, data=payload, headers=headers)
     return response

@@ -1,8 +1,6 @@
 import allure
 from data import Url
 from pages.profile_page import ProfilePage
-from locators.password_recovery_page_locators import PasswordRecoveryPageLocators
-from locators.profile_page_locators import ProfilePageLocators
 
 
 @allure.story('Тесты личного кабинета')
@@ -14,7 +12,7 @@ class TestProfilePage:
         page.click_lk_button()
         page.wait_url_change(Url.LOGIN_PAGE)
         assert (page.get_url() == Url.LOGIN_PAGE and
-                page.get_text(PasswordRecoveryPageLocators.PASSWORD_RECOVERY_BUTTON) == 'Восстановить пароль')
+                page.get_text_password_recovery_button() == 'Восстановить пароль')
 
     @allure.title('Тест перехода в раздел "История заказов"')
     def test_transition_to_order_history(self, driver, user):
@@ -36,5 +34,5 @@ class TestProfilePage:
         page.click_lk_button()
         page.wait_url_change(Url.ACCOUNT_PROFILE_PAGE)
         page.click_logout_button()
-        assert (page.get_text(ProfilePageLocators.LOGIN_BUTTON) == 'Войти'
+        assert (page.get_text_login_button() == 'Войти'
                 and page.get_url() == Url.LOGIN_PAGE)
